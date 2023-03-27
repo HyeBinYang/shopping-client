@@ -4,7 +4,11 @@ import { Link } from "react-router-dom";
 import colors from "../../styles/colors";
 
 const Wrapper = styled.header`
-  width: 100vw;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  width: 100%;
   height: 100px;
   padding: 40px 20px;
   background-color: #fff;

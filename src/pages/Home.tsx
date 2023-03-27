@@ -1,7 +1,12 @@
 import React from "react";
+import HomeEvent from "../components/home/HomeEvent";
 
 const Home = () => {
-  return <main></main>;
+  return (
+    <main>
+      <HomeEvent />
+    </main>
+  );
 };
 
 export default Home;

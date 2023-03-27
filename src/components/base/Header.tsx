@@ -71,7 +71,7 @@ const Header = () => {
         </li>
         <li>
           <Link
-            to={"/category"}
+            to={"/search"}
             className="nav__item"
             onMouseOver={() => {
               setActiveCategoryMenu(true);

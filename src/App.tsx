@@ -1,8 +1,8 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import { Reset } from "styled-reset";
-import Header from "./components/base/Header";
 import Home from "./pages/Home";
+import Search from "./pages/Search";
 import { GlobalStyle } from "./styles/globalStyle";
 
 const App = () => {
@@ -10,9 +10,9 @@ const App = () => {
     <div>
       <Reset />
       <GlobalStyle />
-      <Header />
       <Routes>
         <Route path="/" Component={Home} />
+        <Route path="/search" Component={Search} />
       </Routes>
     </div>
   );

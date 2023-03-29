@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import colors from "../../styles/colors";
 import HomeCategoryMenu from "../home/HomeCategoryMenu";
 
@@ -11,7 +11,7 @@ const Wrapper = styled.header`
   z-index: 999;
   width: 100%;
   height: 100px;
-  padding: 40px 20px;
+  padding: 40px;
   background-color: #fff;
   display: flex;
   align-items: center;
@@ -56,7 +56,8 @@ const Wrapper = styled.header`
 `;
 
 const Header = () => {
-  const [activeCategoryMenu, setActiveCategoryMenu] = useState(true);
+  const [activeCategoryMenu, setActiveCategoryMenu] = useState(false);
+  const location = useLocation();
 
   return (
     <Wrapper>
@@ -69,26 +70,28 @@ const Header = () => {
             홈
           </Link>
         </li>
+        {!location.pathname.includes("search") && (
+          <li>
+            <Link
+              to={"/search"}
+              className="nav__item"
+              onMouseOver={() => {
+                setActiveCategoryMenu(true);
+              }}
+            >
+              카테고리
+            </Link>
+            <HomeCategoryMenu
+              active={activeCategoryMenu}
+              onMouseLeave={() => setActiveCategoryMenu(false)}
+              onClose={() => {
+                setActiveCategoryMenu(false);
+              }}
+            />
+          </li>
+        )}
         <li>
-          <Link
-            to={"/search"}
-            className="nav__item"
-            onMouseOver={() => {
-              setActiveCategoryMenu(true);
-            }}
-          >
-            카테고리
-          </Link>
-          <HomeCategoryMenu
-            active={activeCategoryMenu}
-            onMouseLeave={() => setActiveCategoryMenu(false)}
-            onClose={() => {
-              setActiveCategoryMenu(false);
-            }}
-          />
-        </li>
-        <li>
-          <Link to={"/event"} className="nav__item">
+          <Link to={"/events"} className="nav__item">
             이벤트
           </Link>
         </li>

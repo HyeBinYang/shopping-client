@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import colors from "../../styles/colors";
 import SearchFilter from "./SearchFilter";
 import SearchResultList from "./SearchResultList";
 
@@ -10,7 +11,7 @@ const Wrapper = styled.main`
 
   hr {
     margin: 20px 0;
-    border: 1px solid #000;
+    border: 1px solid ${colors.grey[500]};
   }
 
   @media screen and (max-width: 1024px) {
@@ -23,6 +24,7 @@ const Wrapper = styled.main`
 const Title = styled.p`
   font-size: 20px;
   font-weight: 600;
+  color: ${colors.grey[700]};
 `;
 
 const SearchMainTemplate = () => {

@@ -3,12 +3,10 @@ import styled from "styled-components";
 import colors from "../../styles/colors";
 
 const Wrapper = styled.div`
-  /* width: 180px; */
   max-width: 100%;
   cursor: pointer;
 
   .card__image {
-    /* width: 180px; */
     height: 180px;
     margin-bottom: 10px;
 

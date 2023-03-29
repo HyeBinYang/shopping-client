@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import Header from "../components/base/Header";
 import HomeEvent from "../components/home/HomeEvent";
 import HomeProducts from "../components/home/HomeProducts";
 
@@ -11,7 +10,6 @@ const HomeWrapper = styled.main`
 const Home = () => {
   return (
     <>
-      <Header />
       <HomeWrapper>
         <HomeEvent />
         <HomeProducts title="인기 상품" />

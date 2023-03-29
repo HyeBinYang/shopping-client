@@ -7,6 +7,7 @@ import SideNav from "../common/SideNav";
 const Wrapper = styled.aside`
   width: 250px;
   padding: 40px 0 40px 40px;
+  margin-top: 100px;
   position: absolute;
   left: 0;
   top: 0;

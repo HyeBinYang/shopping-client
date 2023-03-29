@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { Link, useLocation } from "react-router-dom";
 import colors from "../../styles/colors";
 import HomeCategoryMenu from "../home/HomeCategoryMenu";
+import ModalContext from "../../context/modal";
+import LoginForm from "../login/LoginForm";
 
 const Wrapper = styled.header`
   position: sticky;
@@ -44,9 +46,12 @@ const Wrapper = styled.header`
     align-items: center;
     gap: 20px;
 
-    a {
+    button {
+      background-color: transparent;
+      border: none;
       font-size: 14px;
       color: ${colors.grey[500]};
+      cursor: pointer;
 
       &:hover {
         color: #000;
@@ -56,6 +61,7 @@ const Wrapper = styled.header`
 `;
 
 const Header = () => {
+  const { openModal } = useContext(ModalContext);
   const [activeCategoryMenu, setActiveCategoryMenu] = useState(false);
   const location = useLocation();
 
@@ -101,8 +107,14 @@ const Header = () => {
         </li>
       </ul>
       <div className="header__right">
-        <Link to={"/"}>로그인</Link>
-        <Link to={"/"}>회원가입</Link>
+        <button
+          onClick={() => {
+            openModal(<LoginForm />);
+          }}
+        >
+          로그인
+        </button>
+        <button>회원가입</button>
       </div>
     </Wrapper>
   );

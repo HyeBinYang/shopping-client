@@ -16,6 +16,10 @@ const Wrapper = styled.aside`
     border-top: none;
     border-bottom: 1px solid ${colors.grey[300]};
   }
+
+  @media screen and (max-width: 1024px) {
+    display: none;
+  }
 `;
 
 const CategoryList = styled.ul`

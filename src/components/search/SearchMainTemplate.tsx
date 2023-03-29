@@ -12,6 +12,12 @@ const Wrapper = styled.main`
     margin: 20px 0;
     border: 1px solid #000;
   }
+
+  @media screen and (max-width: 1024px) {
+    & {
+      margin-left: 0;
+    }
+  }
 `;
 
 const Title = styled.p`

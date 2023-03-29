@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Link, useLocation } from "react-router-dom";
 import colors from "../../styles/colors";
@@ -58,6 +58,10 @@ const Wrapper = styled.header`
 const Header = () => {
   const [activeCategoryMenu, setActiveCategoryMenu] = useState(false);
   const location = useLocation();
+
+  useEffect(() => {
+    setActiveCategoryMenu(false);
+  }, [location.pathname]);
 
   return (
     <Wrapper>

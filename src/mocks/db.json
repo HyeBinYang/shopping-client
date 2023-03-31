@@ -1,0 +1,11 @@
+{
+  "product": [
+    {
+      "id": 1,
+      "title": "아이폰8 스페이스그레이 64기가 판매합니다",
+      "price": 70000,
+      "images": ["https://picsum.photos/600", "https://picsum.photos/600", "https://picsum.photos/600"],
+      "content": "<p>아이폰8 정상해지폰</p><p>스페이스그레이</p><p>64기가가</p><p>상태 완전양호</p><p>판매합니다.</p>"
+    }
+  ]
+}

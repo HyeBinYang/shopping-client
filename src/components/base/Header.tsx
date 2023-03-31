@@ -5,6 +5,7 @@ import colors from "../../styles/colors";
 import HomeCategoryMenu from "../home/HomeCategoryMenu";
 import ModalContext from "../../context/modal";
 import LoginForm from "../login/LoginForm";
+import SignupForm from "../signup/SignupForm";
 
 const Wrapper = styled.header`
   position: sticky;
@@ -28,7 +29,7 @@ const Wrapper = styled.header`
 
   .header__menus {
     display: flex;
-    gap: 100px;
+    gap: 8vw;
 
     .nav__item {
       font-size: 20px;
@@ -114,7 +115,13 @@ const Header = () => {
         >
           로그인
         </button>
-        <button>회원가입</button>
+        <button
+          onClick={() => {
+            openModal(<SignupForm />);
+          }}
+        >
+          회원가입
+        </button>
       </div>
     </Wrapper>
   );

@@ -1,14 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import colors from "../styles/colors";
 import InputGroup from "../components/productRegister/InputGroup";
 import { categoryList } from "../utils/const";
+import axiosInstance from "../utils/axios";
 
 const Wrapper = styled.main`
   width: 1024px;
   margin: 0 auto;
   padding: 80px 40px;
   margin: 0 auto;
+`;
+
+const ImageRegisterButtonWrapper = styled.div`
+  width: 200px;
+  height: 200px;
+  background-color: ${colors.grey[50]};
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid ${colors.grey[300]};
+  color: ${colors.grey[600]};
+  position: relative;
+
+  input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+  }
 `;
 
 const Title = styled.h1`
@@ -106,26 +129,62 @@ const RegisterButton = styled.button`
 `;
 
 const ProductRegister = () => {
+  const [imageSrc, setImageSrc] = useState<string[]>([]);
+  const [title, setTitle] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState(1000);
+  const [price, setPrice] = useState("");
+  const [content, setContent] = useState("");
+
+  const encodeFileToBase64 = (fileBlob: File): Promise<void> => {
+    const reader = new FileReader();
+    reader.readAsDataURL(fileBlob);
+    return new Promise((resolve) => {
+      reader.onload = () => {
+        setImageSrc([...imageSrc, reader.result as string]);
+        resolve();
+      };
+    });
+  };
+
   return (
     <Wrapper>
       <Title>상품 등록</Title>
       <InputGroupContainer>
         <InputGroup>
           <InputGroup.Label title="상품이미지" required />
-          <InputGroup.Content></InputGroup.Content>
+          <InputGroup.Content>
+            <ImageRegisterButtonWrapper>
+              이미지 등록
+              <input
+                type="file"
+                accept="image/jpg, image/jpeg, image/png"
+                multiple
+                onChange={(e) => {
+                  if (e.target.files && e.target.files.length) encodeFileToBase64(e.target.files[0]);
+                }}
+              />
+            </ImageRegisterButtonWrapper>
+            <div>
+              {imageSrc.map((src) => (
+                <img key={src} src={src} alt="" />
+              ))}
+            </div>
+          </InputGroup.Content>
         </InputGroup>
         <InputGroup center>
           <InputGroup.Label title="제목" required />
           <InputGroup.Content>
-            <input type="text" className="input-text" />
+            <input type="text" className="input-text" value={title} onChange={(e) => setTitle(e.target.value)} />
           </InputGroup.Content>
         </InputGroup>
         <InputGroup>
           <InputGroup.Label title="카테고리" required />
           <InputGroup.Content>
             <CategoryList>
-              {categoryList.map((category) => (
-                <CategoryItem key={category}>{category}</CategoryItem>
+              {categoryList.map((category, index) => (
+                <CategoryItem key={category} selected={selectedCategory === 1000 + index} onClick={() => setSelectedCategory(1000 + index)}>
+                  {category}
+                </CategoryItem>
               ))}
             </CategoryList>
           </InputGroup.Content>
@@ -134,7 +193,7 @@ const ProductRegister = () => {
           <InputGroup.Label title="가격" required />
           <InputGroup.Content>
             <InputWithUnitWrapper>
-              <input type="text" />
+              <input type="text" value={price} onChange={(e) => setPrice(e.target.value)} />
               <span>원</span>
             </InputWithUnitWrapper>
           </InputGroup.Content>
@@ -142,13 +201,26 @@ const ProductRegister = () => {
         <InputGroup>
           <InputGroup.Label title="설명" required />
           <InputGroup.Content>
-            <DescriptionStyle rows={6} />
+            <DescriptionStyle rows={6} value={content} onChange={(e) => setContent(e.target.value)} />
           </InputGroup.Content>
         </InputGroup>
       </InputGroupContainer>
       <FloatingFooter>
         <RegisterButtonWrapper>
-          <RegisterButton>등록하기</RegisterButton>
+          <RegisterButton
+            onClick={() => {
+              axiosInstance
+                .post("product", { title, category: selectedCategory, price, content })
+                .then((res) => {
+                  alert("등록이 완료되었습니다.");
+                })
+                .catch(() => {
+                  alert("등록과정에서 에러가 발생했습니다!");
+                });
+            }}
+          >
+            등록하기
+          </RegisterButton>
         </RegisterButtonWrapper>
       </FloatingFooter>
     </Wrapper>

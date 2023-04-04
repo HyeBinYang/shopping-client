@@ -4,4 +4,5 @@ export interface Product {
   price: number;
   images: string[];
   content: string;
+  createdAt: number;
 }

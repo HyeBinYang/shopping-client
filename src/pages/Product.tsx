@@ -6,6 +6,9 @@ import { Product } from "../types/product";
 import Slider, { Settings } from "react-slick";
 import colors from "../styles/colors";
 import HTMLReactParser from "html-react-parser";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import { getDetailDate } from "../utils/date";
 
 const Wrapper = styled.main`
   max-width: 1000px;
@@ -183,7 +186,7 @@ const ProductPage = () => {
           <div className="product__post-info">
             <span>좋아요 0</span>
             <span>조회수 0</span>
-            <span>1시간 전</span>
+            <span>{getDetailDate(product.createdAt)}</span>
           </div>
           <div className="product__buttons">
             <button className="product__button-ask">문의하기</button>

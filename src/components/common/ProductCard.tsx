@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import colors from "../../styles/colors";
+import { Product } from "../../types/product";
+import { getDetailDate } from "../../utils/date";
 
 const Wrapper = styled.div`
   max-width: 100%;
@@ -27,6 +29,10 @@ const Wrapper = styled.div`
     font-weight: 400;
     height: 34px;
     margin-bottom: 10px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
   }
 
   .card__bottom {
@@ -41,18 +47,20 @@ const Wrapper = styled.div`
   }
 `;
 
-const ProductCard = () => {
+interface ProductCardProps {
+  product: Product;
+}
+
+const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   return (
     <Wrapper>
       <div className="card__image">
         <img src="https://picsum.photos/600" alt="" />
       </div>
-      <p className="card__price">40,000원</p>
-      <p className="card__title">타이틀리스트 골프웨어 M</p>
+      <p className="card__price">{product.price.toLocaleString()}원</p>
+      <p className="card__title">{product.title}</p>
       <div className="card__bottom">
-        <span>송파1동</span>
-        <span>|</span>
-        <span>5시간 전</span>
+        <span>{getDetailDate(product.createdAt)}</span>
       </div>
     </Wrapper>
   );

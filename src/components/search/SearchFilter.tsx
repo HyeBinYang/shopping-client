@@ -32,7 +32,7 @@ const SearchFilter = () => {
     <Wrapper>
       <FilterList>
         <li>
-          <Link to={"/search?sort=RECENT"} className={sort === "RECENT" ? "active" : ""}>
+          <Link to={"/search?sort=RECENT"} className={sort === "RECENT" || !sort ? "active" : ""}>
             최신순
           </Link>
         </li>

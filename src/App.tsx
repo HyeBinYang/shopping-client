@@ -24,7 +24,7 @@ const App = () => {
         <Route path="/events" Component={Event} />
         <Route path="/product/:id" Component={ProductPage} />
         <Route path="/product/register" Component={ProductRegister} />
-        <Route path="/profile/:userId" Component={My} />
+        <Route path="/profile" Component={My} />
       </Routes>
       <Modal />
     </div>

@@ -28,13 +28,13 @@ const Wrapper = styled.div`
 const SearchResultList = () => {
   return (
     <Wrapper>
+      {/* <ProductCard />
       <ProductCard />
       <ProductCard />
       <ProductCard />
       <ProductCard />
       <ProductCard />
-      <ProductCard />
-      <ProductCard />
+      <ProductCard /> */}
     </Wrapper>
   );
 };

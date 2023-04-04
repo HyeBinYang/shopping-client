@@ -2,6 +2,7 @@ import React, { HTMLAttributes } from "react";
 import styled from "styled-components";
 import colors from "../../styles/colors";
 import { categoryList } from "../../utils/const";
+import { Link } from "react-router-dom";
 
 const Wrapper = styled.div`
   position: absolute;
@@ -43,12 +44,14 @@ const Wrapper = styled.div`
 
     li {
       width: 25%;
-      font-size: 14px;
-      color: ${colors.grey[600]};
-      cursor: pointer;
 
-      &:hover {
-        color: #000;
+      a {
+        font-size: 14px;
+        color: ${colors.grey[600]};
+
+        &:hover {
+          color: #000;
+        }
       }
     }
   }
@@ -71,8 +74,10 @@ const HomeCategoryMenu: React.FC<HomeCategoryMenuProps> = ({ active, onClose, ..
       <div className="menu__content">
         <p className="menu__title">카테고리</p>
         <ul className="menu__list">
-          {categoryList.map((category) => (
-            <li key={category}>{category}</li>
+          {categoryList.map((category, index) => (
+            <li key={category}>
+              <Link to={`/search?type=${1000 + index}&sort=RECENT`}>{category}</Link>
+            </li>
           ))}
         </ul>
       </div>

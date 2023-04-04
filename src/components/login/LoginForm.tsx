@@ -93,10 +93,12 @@ const LoginForm = () => {
 
   const requestLogin = async () => {
     try {
-      axiosInstance.post("login", {
+      await axiosInstance.post("login/login", {
         id: inputRef.current.userId?.value ?? "",
         password: inputRef.current.userId?.value ?? "",
       });
+      alert("로그인이 완료되었습니다.");
+      closeModal();
     } catch (error) {}
   };
 
